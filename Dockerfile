@@ -11,7 +11,7 @@ RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates && \
     cd /tmp && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
         "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz" \
-        | tar -zxf - && \
+        | tar -zxf - -C /tmp && \
     mv jdk1.$JAVA_VERSION_MAJOR.0_$JAVA_VERSION_MINOR/jre $JAVA_HOME && \
     rm -rf $JAVA_HOME/bin/jjs && \
            $JAVA_HOME/bin/keytool && \

@@ -5,7 +5,7 @@ ENV JAVA_VERSION_MAJOR=8  \
     JAVA_VERSION_MINOR=74 \
     JAVA_VERSION_BUILD=02 \
     JAVA_PACKAGE=server-jre \
-    PATH=$PATH:$JAVA_HOME/bin \
+    PATH=$PATH:$JAVA_HOME/bin
 
 RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates && \
     cd /tmp && \

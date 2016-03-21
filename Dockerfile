@@ -7,12 +7,11 @@ ENV JAVA_VERSION_MAJOR=8  \
     JAVA_PACKAGE=server-jre \
     PATH=$PATH:$JAVA_HOME/bin
 
-RUN apk add --no-cache --virtual=build-dependencies curl ca-certificates && \
-    cd /tmp && \
+RUN apk upgrade --update && \
+    apk add --update --no-cache --virtual=build-dependencies curl ca-certificates && \
     curl -jksSLH "Cookie: oraclelicense=accept-securebackup-cookie" \
         "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-b${JAVA_VERSION_BUILD}/${JAVA_PACKAGE}-${JAVA_VERSION_MAJOR}u${JAVA_VERSION_MINOR}-linux-x64.tar.gz" \
-        | tar -zxf - -C /tmp && \
-    mv jdk1.$JAVA_VERSION_MAJOR.0_$JAVA_VERSION_MINOR/jre $JAVA_HOME && \
+        | tar -zxf - -C /tmp && mv /tmp/jdk1.$JAVA_VERSION_MAJOR.0_$JAVA_VERSION_MINOR/jre $JAVA_HOME && \
     rm -rf $JAVA_HOME/bin/jjs && \
            $JAVA_HOME/bin/keytool && \
            $JAVA_HOME/bin/orbd && \
